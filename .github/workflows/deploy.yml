@@ -45,7 +45,7 @@ jobs:
     - run: |
         pwd
         ls
-        echo "Github Home: $(~)"
+        echo "Github Home: $~"
         ls ~
 
     - name: Deploy 🚀
