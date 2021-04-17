@@ -6,55 +6,27 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    # container:
-    #   image: ubuntu:18.04
-
     defaults:
       run:
         working-directory: website
 
-    strategy:
-      matrix:
-        node-version: [14.1.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+
+    - name: Use Node.js 14.1.0
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
+        node-version: 14.1.0
 
-    # - name: Install SSH
-    #   run: |
-    #     apt update
-    #     apt install openssh-server -y
+    - name: Initialize npm for CI
+      run: npm ci
 
-    # - name: Add SSH key
-    #   uses: webfactory/ssh-agent@v0.5.2
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
-
-    # - run: npm test
-
-    - run: |
-        pwd
-        ls
-        echo "Github Home: $HOME"
-        ls ~
-
-    # - name: Install Git
-    #   run: |
-    #     apt update
-    #     apt install git -y
+    - name: Install and Build 🔧
+      run: npm run build --if-present
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: website/build # The folder the action should deploy.
+        branch: gh-pages
+        folder: website/build
