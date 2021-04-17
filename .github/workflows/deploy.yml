@@ -31,7 +31,9 @@ jobs:
     - run: npm run build --if-present
 
     - name: Install SSH
-      run: apt install openssh-server -y
+      run: |
+        apt update
+        apt install openssh-server -y
 
     - name: Add SSH key
       uses: webfactory/ssh-agent@v0.5.2
