@@ -9,8 +9,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    container:
-      image: ubuntu:18.04
+    # container:
+    #   image: ubuntu:18.04
 
     defaults:
       run:
