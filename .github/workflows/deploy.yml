@@ -42,9 +42,14 @@ jobs:
 
     # - run: npm test
 
+    - run: |
+      pwd
+      ls
+      echo "Github Home: $(~)"
+      ls ~
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
         branch: gh-pages # The branch the action should deploy to.
-        folder: build # The folder the action should deploy.
-      working-directory: website
+        folder: ~/ithub-pages-template/website/build # The folder the action should deploy.
